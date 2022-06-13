@@ -21,7 +21,7 @@ public class InventoryReportCreator extends AbstractReportCreator implements IWr
 
     private static final int COLUMN_WIDTH = 25;
     
-    private static final String[] HEADERS= {"Name","Group old => new","Artifact old => new","Version old => new","Licenses: old => new","Type old => new","SHA1 old => new","Description old => new","Match Type old => new"};
+    private static final String[] HEADERS= {"Component Name","Licenses old => new","Licenses Links old => new","Package Type old => new","Component Id: old => new","Package Id old => new","Version old => new"};
     
     private InventoryReportStorage oldReport, newReport;
 
@@ -56,19 +56,18 @@ public class InventoryReportCreator extends AbstractReportCreator implements IWr
         for (int i = 0; i < newSize; i++) {
             boolean isPresentInOld = false;
             for (int j = 0; j < oldSize; j++) {
-                if (oldLibs.get(j).getName().equals(newLibs.get(i).getName())) {
+                if (oldLibs.get(j).getComponentName().equals(newLibs.get(i).getComponentName())) {
                     isPresentInOld = true;
                     if (!oldLibs.get(j).getLicenses().equals(newLibs.get(i).getLicenses())) {
                         
-                        newLibs.get(i).setGroup(oldLibs.get(j).getGroup()+" => "+newLibs.get(i).getGroup());
-                        newLibs.get(i).setArtifact(oldLibs.get(j).getArtifact()+" => "+newLibs.get(i).getArtifact());
-                        newLibs.get(i).setVersion(oldLibs.get(j).getVersion()+" => "+newLibs.get(i).getVersion());
+                        newLibs.get(i).setComponentName(oldLibs.get(j).getComponentName()+" => "+newLibs.get(i).getComponentName());
                         newLibs.get(i).setLicenses(oldLibs.get(j).getLicenses()+" => "+newLibs.get(i).getLicenses());
-                        newLibs.get(i).setType(oldLibs.get(j).getType()+" => "+newLibs.get(i).getType());
-                        newLibs.get(i).setSha1(oldLibs.get(j).getSha1()+" => "+newLibs.get(i).getSha1());
-                        newLibs.get(i).setDescription(oldLibs.get(j).getDescription()+" => "+newLibs.get(i).getDescription());
-                        newLibs.get(i).setMatchType(oldLibs.get(j).getMatchType()+" => "+newLibs.get(i).getMatchType());
-                        
+                        newLibs.get(i).setLicensesLinks(oldLibs.get(j).getLicensesLinks()+" => "+newLibs.get(i).getLicensesLinks());
+                        newLibs.get(i).setPackageType(oldLibs.get(j).getPackageType()+" => "+newLibs.get(i).getPackageType());
+                        newLibs.get(i).setComponentId(oldLibs.get(j).getComponentId()+" => "+newLibs.get(i).getComponentId());
+                        newLibs.get(i).setPackageId(oldLibs.get(j).getPackageId()+" => "+newLibs.get(i).getPackageId());
+                        newLibs.get(i).setVersion(oldLibs.get(j).getVersion()+" => "+newLibs.get(i).getVersion());
+
                         result.add(newLibs.get(i));
                     }
                     break;
@@ -90,42 +89,33 @@ public class InventoryReportCreator extends AbstractReportCreator implements IWr
             InventoryReport library = (InventoryReport) report.get(i);
             
             cell = row.createCell(0, CellType.STRING);
-            cell.setCellValue(library.getName());
+            cell.setCellValue(library.getComponentName());
             cell.setCellStyle(Stylist.setStyle(i, workbook));
             
             cell = row.createCell(1, CellType.STRING);
-            cell.setCellValue(library.getGroup());
-            cell.setCellStyle(Stylist.setStyle(i, workbook));
-            
-            cell = row.createCell(2, CellType.STRING);
-            cell.setCellValue(library.getArtifact());
-            cell.setCellStyle(Stylist.setStyle(i, workbook));
-            
-            cell = row.createCell(3, CellType.STRING);
-            cell.setCellValue(library.getVersion());
-            cell.setCellStyle(Stylist.setStyle(i, workbook));
-            
-            cell = row.createCell(4, CellType.STRING);
             cell.setCellValue(library.getLicenses());
             cell.setCellStyle(Stylist.setStyle(i, workbook));
             
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue(library.getLicensesLinks());
+            cell.setCellStyle(Stylist.setStyle(i, workbook));
+            
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellValue(library.getPackageType());
+            cell.setCellStyle(Stylist.setStyle(i, workbook));
+            
+            cell = row.createCell(4, CellType.STRING);
+            cell.setCellValue(library.getComponentId());
+            cell.setCellStyle(Stylist.setStyle(i, workbook));
+            
             cell = row.createCell(5, CellType.STRING);
-            cell.setCellValue(library.getType());
+            cell.setCellValue(library.getPackageId());
             cell.setCellStyle(Stylist.setStyle(i, workbook));
             
             cell = row.createCell(6, CellType.STRING);
-            cell.setCellValue(library.getSha1());
+            cell.setCellValue(library.getVersion());
             cell.setCellStyle(Stylist.setStyle(i, workbook));
-            
-            cell = row.createCell(7, CellType.STRING);
-            cell.setCellValue(library.getDescription());
-            cell.setCellStyle(Stylist.setStyle(i, workbook));
-            
-            cell = row.createCell(8, CellType.STRING);
-            cell.setCellValue(library.getMatchType());
-            cell.setCellStyle(Stylist.setStyle(i, workbook));
-            
-          
+
         }
     }
 }

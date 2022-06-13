@@ -49,40 +49,25 @@ public class InventoryReportGetter implements IReaderExcelData {
 	private void setDataToModel(InventoryReport library, int columnIndex, String data) {
 		switch (columnIndex) {
 		case 0:
-			library.setName(data);
+			library.setComponentName(data);
 			break;
 		case 1:
-			library.setGroup(data);
+		  library.setLicenses(data);
 			break;
 		case 2:
-			library.setArtifact(data);
+			library.setLicensesLinks(data);
 			break;
 		case 3:
-			library.setVersion(data);
+		  library.setPackageType(data);
 			break;
 		case 4:
-			library.setType(data);
+			library.setComponentId(data);
 			break;
 		case 5:
-			library.setSha1(data);
+			library.setPackageId(data);
 			break;
 		case 6:
-			library.setDescription(data);
-			break;
-		case 7:
-			library.setLicenses(data);
-			break;
-		case 8:
-			library.setMatchType(data);
-			break;
-		case 9:
-			library.setProduct(data);
-			break;
-		case 10:
-			library.setProject(data);
-			break;
-		case 11:
-			library.setLicenseLink(data);
+		  library.setVersion(data);
 			break;
 		}
 	}

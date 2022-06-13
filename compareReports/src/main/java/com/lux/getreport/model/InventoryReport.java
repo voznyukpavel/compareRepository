@@ -2,74 +2,21 @@ package com.lux.getreport.model;
 
 public class InventoryReport {
 
-    private String name;
-    private String group;
-    private String artifact;
-    private String version;
-    private String type;
-    private String sha1;
-    private String description;
+    private String componentName;
     private String licenses;
-    private String matchType;
-    private String product;
-    private String project;
-    private String licenseLink;
+    private String licensesLinks;
+    private String packageType;
+    private String componentId;
+    private String packageId;
+    private String version;
 
-
-    public String getName() {
-        return name;
+ 
+    public String getComponentName() {
+        return componentName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
-    public String getArtifact() {
-        return artifact;
-    }
-
-    public void setArtifact(String artifact) {
-        this.artifact = artifact;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getSha1() {
-        return sha1;
-    }
-
-    public void setSha1(String sha1) {
-        this.sha1 = sha1;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
     }
 
     public String getLicenses() {
@@ -80,43 +27,51 @@ public class InventoryReport {
         this.licenses = licenses;
     }
 
-    public String getMatchType() {
-        return matchType;
+    public String getLicensesLinks() {
+        return licensesLinks;
     }
 
-    public void setMatchType(String matchType) {
-        this.matchType = matchType;
+    public void setLicensesLinks(String licensesLinks) {
+        this.licensesLinks = licensesLinks;
     }
 
-    public String getProduct() {
-        return product;
+    public String getPackageType() {
+        return packageType;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setPackageType(String packageType) {
+        this.packageType = packageType;
     }
 
-    public String getProject() {
-        return project;
+    public String getComponentId() {
+        return componentId;
     }
 
-    public void setProject(String project) {
-        this.project = project;
+    public void setComponentId(String componentId) {
+        this.componentId = componentId;
     }
 
-    public String getLicenseLink() {
-        return licenseLink;
+    public String getPackageId() {
+        return packageId;
     }
 
-    public void setLicenseLink(String licenseLink) {
-        this.licenseLink = licenseLink;
+    public void setPackageId(String packageId) {
+        this.packageId = packageId;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((componentName == null) ? 0 : componentName.hashCode());
         return result;
     }
 
@@ -132,11 +87,11 @@ public class InventoryReport {
             return false;
         }
         InventoryReport other = (InventoryReport) obj;
-        if (name == null) {
-            if (other.name != null) {
+        if (componentName == null) {
+            if (other.componentName != null) {
                 return false;
             }
-        } else if (!name.equals(other.name)) {
+        } else if (!componentName.equals(other.componentName)) {
             return false;
         }
         return true;
@@ -144,9 +99,10 @@ public class InventoryReport {
 
     @Override
     public String toString() {
-        return "InventoryReport [name=" + name + ", group=" + group + ", artifact=" + artifact + ", version=" + version
-                + ", type=" + type + ", sha1=" + sha1 + ", description=" + description + ", licenses=" + licenses
-                + ", matchType=" + matchType + ", product=" + product + ", project=" + project + ", licenseLink="
-                + licenseLink + "]";
+        return "InventoryReport [componentName=" + componentName + ", licenses=" + licenses + ", licensesLinks="
+                + licensesLinks + ", packageType=" + packageType + ", componentId=" + componentId + ", packageId="
+                + packageId + ", version=" + version + "]";
     }
+
+
 }
